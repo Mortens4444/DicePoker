@@ -47,7 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArtificialIntelligence\AI_V3.cs" />
     <Compile Include="ArtificialIntelligence\AI_V2.cs" />
     <Compile Include="ArtificialIntelligence\AI_V1.cs" />
     <Compile Include="ArtificialIntelligence\ArtificialIntelligenceBase.cs" />
