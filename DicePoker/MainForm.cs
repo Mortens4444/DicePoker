@@ -4,11 +4,11 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace DiePoker
+namespace DicePoker
 {
     public partial class MainForm : Form
     {
-        private DiePokerGame game;
+        private DicePokerGame game;
         private readonly CheckBox[] checkBoxes;
 
         public MainForm()
@@ -79,15 +79,15 @@ namespace DiePoker
         {
             return new List<Player>
             {
-                new Player("Player 1", PlayerType.Human, game.Dies),
-                new ComputerPlayer("Computer 1", game.Dies),
-                new ComputerPlayer("Computer 2", game.Dies)
+                new Player("Player 1", PlayerType.Human, game.Dice),
+                new ComputerPlayer("Computer 1", game.Dice),
+                new ComputerPlayer("Computer 2", game.Dice)
             };
         }
 
         private List<Player> ShowPlayersForm()
         {
-            var playersForm = new PlayersForm(game.Dies);
+            var playersForm = new PlayersForm(game.Dice);
             if (playersForm.ShowDialog() == DialogResult.OK)
             {
                 return playersForm.Players;
@@ -99,9 +99,9 @@ namespace DiePoker
         {
             try
             {
-                var notKeepedIndexes = checkBoxes.Where(cb => !cb.Checked).Select(cb => (byte)(cb.Name.Last() - '1'));
+                var notKeptIndexes = checkBoxes.Where(cb => !cb.Checked).Select(cb => (byte)(cb.Name.Last() - '1'));
                 
-                var result = game.ReRoll(notKeepedIndexes.ToArray());
+                var result = game.ReRoll(notKeptIndexes.ToArray());
                 lvRolls.Items.RemoveAt(lvRolls.Items.Count - 1);
                 AddListViewItemToListView(result.ToListViewItem(game.CurrentPlayer, String.Empty));
 
@@ -138,7 +138,7 @@ namespace DiePoker
         private void StartNewGame()
         {
             lvRolls.Items.Clear();
-            game = new DiePokerGame();
+            game = new DicePokerGame();
         }
 
         private void BtnPokerHand_Click(object sender, EventArgs e)
@@ -168,7 +168,7 @@ namespace DiePoker
 
         private void TsmiChangePlayers_Click(object sender, EventArgs e)
         {
-            var playersForm = new PlayersForm(game.Dies);
+            var playersForm = new PlayersForm(game.Dice);
             if (playersForm.ShowDialog() == DialogResult.OK)
             {
                 lvRolls.Items.Clear();

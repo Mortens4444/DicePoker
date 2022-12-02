@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace DiePoker
+namespace DicePoker
 {
-    public class DiePokerGame
+    public class DicePokerGame
     {
         public bool IsStarted { get; private set; }
 
@@ -13,7 +13,7 @@ namespace DiePoker
 
         public List<Player> Players { get; private set; }
 
-        public DieCollection Dies { get; private set; }
+        public DiceCollection Dice { get; private set; }
 
         public Player CurrentPlayer
         {
@@ -35,9 +35,9 @@ namespace DiePoker
         private byte currentNumberOfRolls;
         private readonly int MaximumNumberOfRolls = Enum.GetValues(typeof(PokerHandType)).Length;
 
-        public DiePokerGame()
+        public DicePokerGame()
         {
-            Dies = DieCollectionFactory.CreateDiePoker();
+            Dice = DiceCollectionFactory.CreateDicePoker();
             IsStarted = false;
         }
 
@@ -62,10 +62,10 @@ namespace DiePoker
             return Roll();
         }
 
-        public List<byte> ReRoll(params byte[] notKeepedIndexes)
+        public List<byte> ReRoll(params byte[] notKeptIndexes)
         {
             CheckGameState();
-            LastRollResult = CurrentPlayer.ReRoll(notKeepedIndexes);
+            LastRollResult = CurrentPlayer.ReRoll(notKeptIndexes);
             return LastRollResult;
         }
 

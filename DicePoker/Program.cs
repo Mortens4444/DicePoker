@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace DiePoker
+namespace DicePoker
 {
     static class Program
     {

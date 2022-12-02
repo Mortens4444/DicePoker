@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace DiePoker
+namespace DicePoker
 {
     public static class ListExtension
     {

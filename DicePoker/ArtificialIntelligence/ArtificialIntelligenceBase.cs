@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DiePoker.ArtificialIntelligence
+namespace DicePoker.ArtificialIntelligence
 {
     public abstract class ArtificialIntelligenceBase : IArtificialIntelligence
     {

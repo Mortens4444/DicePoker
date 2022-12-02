@@ -1,24 +1,24 @@
-﻿using DiePoker.ArtificialIntelligence;
+﻿using DicePoker.ArtificialIntelligence;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DiePoker
+namespace DicePoker
 {
     public class ComputerPlayer : Player
     {
-        ArtificialIntelligenceBase artificialIntelligence;
+        private readonly ArtificialIntelligenceBase artificialIntelligence;
 
-        public ComputerPlayer(string name, DieCollection die)
-            : base(name, PlayerType.Computer, die)
+        public ComputerPlayer(string name, DiceCollection dice)
+            : base(name, PlayerType.Computer, dice)
         {
             artificialIntelligence = new AI_V2();
         }
 
-        public double CalculateProbability(PokerHandType type, List<Die> dies)
+        public double CalculateProbability(PokerHandType type, List<Die> dice)
         {
-            var rollProbability = 1 / dies.First().NumberOfSides;
-            var probability = rollProbability * dies.Count * 3;
+            var rollProbability = 1 / dice.First().NumberOfSides;
+            var probability = rollProbability * dice.Count * 3;
             switch (type)
             {
                 case PokerHandType.HighCard:
@@ -51,7 +51,7 @@ namespace DiePoker
             var notSetPokerHandTypes = GetNotSetPokerHandTypes();
             return notSetPokerHandTypes.Select(notSetPokerHandType =>
             {
-                var probability = CalculateProbability(notSetPokerHandType, dies.Dies);
+                var probability = CalculateProbability(notSetPokerHandType, dice);
                 return new KeyValuePair<PokerHandType, double>(notSetPokerHandType, probability);
             }).OrderByDescending(pokerHandType => pokerHandType.Value);
         }
@@ -59,13 +59,13 @@ namespace DiePoker
         public PokerHandResult UseArtificialIntelligence()
         {
             var firstRoll = Roll();
-            var notKeededIndexes = ExamineRolls(firstRoll);
+            var notKeptIndexes = ExamineRolls(firstRoll);
 
-            var secondRoll = ReRoll(notKeededIndexes);
-            notKeededIndexes = ExamineRolls(firstRoll, secondRoll);
+            var secondRoll = ReRoll(notKeptIndexes);
+            notKeptIndexes = ExamineRolls(firstRoll, secondRoll);
 
-            var thirdRoll = ReRoll(notKeededIndexes);
-            notKeededIndexes = ExamineRolls(firstRoll, secondRoll, thirdRoll);
+            var thirdRoll = ReRoll(notKeptIndexes);
+            ExamineRolls(firstRoll, secondRoll, thirdRoll);
             
             var pokerHandType = GetBestFit(thirdRoll);
 
@@ -80,7 +80,6 @@ namespace DiePoker
 
         private PokerHandType GetBestFit(List<byte> rollResult)
         {
-            var fits = new List<PokerHandResult>();
             var probabilities = GetOrderedNotSetPokerHandTypes().Reverse();
             return artificialIntelligence.GetBestFit(rollResult, probabilities);
         }

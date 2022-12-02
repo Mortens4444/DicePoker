@@ -55,9 +55,9 @@
     <Compile Include="PokerHandResult.cs" />
     <Compile Include="ComputerPlayer.cs" />
     <Compile Include="Die.cs" />
-    <Compile Include="DieCollection.cs" />
-    <Compile Include="DieCollectionFactory.cs" />
-    <Compile Include="DiePokerGame.cs" />
+    <Compile Include="DiceCollection.cs" />
+    <Compile Include="DiceCollectionFactory.cs" />
+    <Compile Include="DicePokerGame.cs" />
     <Compile Include="ByteEnumerableExtension.cs" />
     <Compile Include="ListExtension.cs" />
     <Compile Include="MainForm.cs">

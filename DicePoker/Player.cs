@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DiePoker
+namespace DicePoker
 {
     public class Player
     {
@@ -13,20 +13,20 @@ namespace DiePoker
 
         public PlayerType PlayerType { get; private set; }
 
-        protected readonly DieCollection dies;
+        protected readonly DiceCollection dice;
 
-        public Player(string displayName, PlayerType playerType, DieCollection dies)
+        public Player(string displayName, PlayerType playerType, DiceCollection dice)
         {
             DisplayName = displayName;
-            this.dies = dies;
+            this.dice = dice;
             PlayerType = playerType;
             PokerHands = new PokerHands();
         }
 
         public List<byte> Roll()
         {
-            NumberOfReRolls = DieCollection.MaximumNumberOfReRolls;
-            return dies.Roll();
+            NumberOfReRolls = DiceCollection.MaximumNumberOfReRolls;
+            return dice.Roll();
         }
 
         public void Set(PokerHandResult pokerHandResult)
@@ -35,12 +35,12 @@ namespace DiePoker
             NumberOfReRolls = 0;
         }
 
-        public List<byte> ReRoll(params byte[] notKeepedIndexes)
+        public List<byte> ReRoll(params byte[] notKeptIndexes)
         {
             if (NumberOfReRolls > 0)
             {
                 NumberOfReRolls--;
-                return dies.ReRoll(notKeepedIndexes);
+                return dice.ReRoll(notKeptIndexes);
             }
 
             throw new InvalidOperationException("Not allowed to re-roll.");

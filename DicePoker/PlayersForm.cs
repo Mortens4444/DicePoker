@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace DiePoker
+namespace DicePoker
 {
     public partial class PlayersForm : Form
     {
         public List<Player> Players { get; private set; }
 
-        private readonly DieCollection dies;
+        private readonly DiceCollection dice;
 
-        public PlayersForm(DieCollection dies)
+        public PlayersForm(DiceCollection dice)
         {
             InitializeComponent();
-            this.dies = dies;
+            this.dice = dice;
             cbPlayerType.DataSource = Enum.GetValues(typeof(PlayerType));
             cbPlayerType.SelectedIndex = 0;
             SetButtonsState();
@@ -60,8 +60,8 @@ namespace DiePoker
                 var item = lvPlayers.Items[i];
                 var playerType = (PlayerType)item.Tag;
                 var player = playerType == PlayerType.Human ?
-                    new Player(item.Text, playerType, dies) :
-                    new ComputerPlayer(item.Text, dies);
+                    new Player(item.Text, playerType, dice) :
+                    new ComputerPlayer(item.Text, dice);
                 Players.Add(player);
             }
         }

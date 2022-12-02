@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DiePoker
+namespace DicePoker
 {
     public class PokerHands
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DiePoker
+namespace DicePoker
 {
     public class Die
     {

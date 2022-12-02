@@ -1,3 +1,4 @@
 .vs/
-DiePoker/obj/
-DiePoker/bin/
+DicePoker/obj/
+DicePoker/bin/
+**/*.bak

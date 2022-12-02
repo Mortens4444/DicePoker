@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DiePoker
+namespace DicePoker
 {
     public class PokerHandResult
     {

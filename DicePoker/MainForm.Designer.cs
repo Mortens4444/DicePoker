@@ -1,4 +1,4 @@
-﻿namespace DiePoker
+﻿namespace DicePoker
 {
     partial class MainForm
     {

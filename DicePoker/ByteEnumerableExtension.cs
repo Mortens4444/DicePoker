@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DiePoker
+namespace DicePoker
 {
     public static class ByteEnumerableExtension
     {
@@ -67,13 +67,13 @@ namespace DiePoker
 
         public static Tuple<byte, byte> GetFullHouse(this IEnumerable<byte> values)
         {
-			var groups = GetGroups(values);
-			if (groups.Count() == 2)
+			var groups = GetGroups(values).ToList();
+			if (groups.Count == 2)
 			{
 				var threeTimes = groups.FirstOrDefault(group => group.Count() == 3);
 				if (threeTimes != null)
 				{
-					var twoTimes = groups.FirstOrDefault(group => group.Count() == 2);				
+					var twoTimes = groups.FirstOrDefault(group => group.Count() == 2);
 					return new Tuple<byte, byte>(threeTimes.Key, twoTimes.Key);
 				}
 			}
